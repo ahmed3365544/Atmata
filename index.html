@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>smart flow</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0078ff;
+      --secondary-color: #001d6e;
+      --accent-color: #00d4ff;
+      --dark-bg: #121212;
+      --light-text: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      --transition: all 0.3s ease;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    body { 
+      font-family: 'Cairo', sans-serif; 
+      background-color: var(--dark-bg); 
+      color: var(--light-text); 
+      scroll-behavior: smooth; 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0; /* Added left: 0 for full width */
+      width: 100%;
+      z-index: 1000;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+    
+    /* Ensure nav content is within container */
+    nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%; /* Match global container width */
+        max-width: 1200px; /* Match global container max-width */
+        margin: 0 auto; /* Center the nav content */
+    }
+
+
+    nav.scrolled {
+      box-shadow: 0 5px 20px rgba(0, 120, 255, 0.1);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--light-text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: var(--gradient-bg);
+      color: var(--light-text);
+      border: none;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 120, 255, 0.3);
+      text-decoration: none; /* For cases where it might be an <a> styled as button */
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 120, 255, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 0 50px;
+      padding-top: 120px; /* Account for fixed navbar height */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 120, 255, 0.2) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--primary-color);
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--light-text);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .secondary-button:hover {
+      background: rgba(0, 120, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px; /* Control max image size */
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 120, 255, 0.3);
+      transform-style: preserve-3d;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-element {
+      position: absolute;
+      background: rgba(0, 120, 255, 0.1);
+      border-radius: 50%;
+      filter: blur(5px);
+    }
+
+    .element-1 {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      right: 5%;
+      animation: float1 15s infinite ease-in-out;
+    }
+
+    .element-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 15%;
+      left: 10%;
+      animation: float2 20s infinite ease-in-out;
+    }
+
+    .element-3 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 20%;
+      animation: float3 18s infinite ease-in-out;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 30px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-30px, 50px); }
+    }
+
+    @keyframes float3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -40px); }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-bg);
+      border-radius: 2px;
+    }
+
+    .features {
+      background-color: rgba(0, 29, 110, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 120, 255, 0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .feature-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 120, 255, 0.1) 0%, transparent 100%);
+      z-index: -1;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 120, 255, 0.3);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .feature-description {
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Process Section */
+    .process {
+      background-color: var(--dark-bg);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .process-step {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 30px;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .process-step:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 120, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient-bg);
+      color: var(--light-text);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .step-description {
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Packages Section */
+    .packages {
+      background-color: rgba(0, 29, 110, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .packages:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 120, 255, 0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .packages-slider {
+      width: 100%;
+      overflow: visible; /* Important for hover scale effects on cards */
+    }
+    .swiper-slide {
+        height: auto; /* Ensure slides adapt to content height */
+        display: flex; /* Helps with card alignment if needed */
+        flex-direction: column;
+    }
+
+    .package-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 30px;
+      height: 100%; /* Make card fill slide height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .package-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: rgba(0, 120, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .package-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .package-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    .package-features {
+      margin-bottom: 30px;
+      list-style: none; /* Remove default list styling */
+      padding-left: 0; /* Remove default padding */
+      flex-grow: 1; /* Allow features list to take available space */
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .feature-item i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .swiper-pagination-bullet {
+        background-color: var(--light-text) !important;
+        opacity: 0.5 !important;
+    }
+    .swiper-pagination-bullet-active {
+        background-color: var(--primary-color) !important;
+        opacity: 1 !important;
+    }
+
+
+    /* Partners Section */
+    .partners {
+      background-color: var(--dark-bg);
+      padding: 80px 0;
+    }
+
+    .partners-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Vertically align logos */
+      flex-wrap: wrap;
+      gap: 40px; /* Gap between logos */
+    }
+
+    .partner-logo {
+      filter: grayscale(100%) brightness(1.5);
+      opacity: 0.7;
+      height: 60px; /* Fixed height for logos */
+      width: auto; /* Maintain aspect ratio */
+      transition: var(--transition);
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* About Section */
+    .about {
+      background-color: rgba(0, 29, 110, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text {
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 150px;
+      text-align: center; /* Center stat items */
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .about-image {
+      position: relative;
+      text-align: center; /* Center image if container is wider */
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 500px; /* Control max image size */
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 120, 255, 0.3);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--dark-bg);
+      position: relative;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 5px; /* Align icon with first line of text */
+    }
+
+    .contact-text h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem; /* Slightly larger heading */
+    }
+
+    .contact-text p, .contact-text a {
+      color: var(--light-text);
+      opacity: 0.9;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1rem; /* Consistent text size */
+    }
+
+    .contact-text a:hover {
+      color: var(--primary-color);
+      opacity: 1;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--light-text);
+      font-family: 'Cairo', sans-serif;
+      transition: var(--transition);
+      font-size: 1rem; /* Ensure readable font size */
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background: rgba(0, 120, 255, 0.1); /* Subtle focus background */
+    }
+
+    textarea.form-input {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      background: var(--gradient-bg);
+      color: var(--light-text);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+      font-size: 1rem; /* Consistent button font size */
+    }
+
+    .form-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 120, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0a0a0a;
+      padding: 80px 0 30px;
+      margin-top: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient-bg);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+    
+    .footer-column .logo { /* Style logo in footer */
+        font-size: 1.5rem; 
+        margin-bottom: 20px; 
+        display: inline-block;
+    }
+    .footer-column p {
+        opacity:0.8; 
+        line-height: 1.7;
+        font-size: 0.9rem;
+    }
+
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      list-style: none; /* Remove default list styling */
+      padding-left: 0; /* Remove default padding */
+    }
+
+    .footer-links a, .footer-links span { /* For non-link items like address */
+      color: var(--light-text);
+      text-decoration: none;
+      transition: var(--transition);
+      opacity: 0.8;
+      font-size: 0.9rem;
+      display: flex; /* For icon alignment */
+      align-items: center; /* For icon alignment */
+      gap: 8px; /* Gap between icon and text */
+    }
+    .footer-links i {
+        color: var(--primary-color); /* Icon color same as primary */
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+      opacity: 1;
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--light-text);
+      font-size: 1.2rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--gradient-bg);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-bottom p {
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        order: 1;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero-image {
+        order: 0;
+        margin-bottom: 40px;
+        text-align: center; /* Center image on smaller screens */
+      }
+      .hero-image img {
+        max-width: 80%; /* Adjust image size on smaller screens */
+      }
+
+
+      .nav-links {
+        display: none; /* Simplistic: hide nav links. Implement burger menu for real app */
+      }
+      nav .container .cta-button {
+        display: none; /* Hide CTA button on nav for smaller screens if nav-links are hidden */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .about-content, .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        order: 1; /* Form first then info on mobile */
+      }
+
+      .contact-form {
+        order: 0;
+      }
+      .footer-content {
+        grid-template-columns: 1fr; /* Stack footer columns */
+        text-align: center;
+      }
+      .footer-column .logo, .social-links {
+        justify-content: center;
+      }
+      .footer-links {
+        align-items: center;
+      }
+       .footer-links a, .footer-links span {
+        justify-content: center; /* Center footer link items */
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+      /* animation-play-state: paused; */ /* If controlled strictly by JS observer */
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <i class="fas fa-robot"></i>
+        <span>Atmata</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">المميزات</a>
+        <a href="#process">كيف نعمل</a>
+        <a href="#packages">الباقات</a>
+        <a href="#about">من نحن</a>
+        <a href="#contact">تواصل معنا</a>
+      </div>
+      <a href="#contact" class="cta-button">احجز استشارة مجانية</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="floating-elements">
+      <div class="floating-element element-1"></div>
+      <div class="floating-element element-2"></div>
+      <div class="floating-element element-3"></div>
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-content fade-in">
+        <h1 class="hero-title">أتمت عملك... <span>وركّز على ما يهم حقاً</span></h1>
+        <p class="hero-subtitle">نساعدك على تحويل الإجراءات اليدوية المتكررة في عملك إلى عمليات تلقائية ذكية، مما يوفر لك الوقت ويقلل التكاليف ويضمن الدقة.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="cta-button">احجز استشارة مجانية</a>
+          <a href="#features" class="secondary-button">تعرف على خدماتنا</a>
+        </div>
+      </div>
+      <div class="hero-image fade-in delay-2">
+        <img src="1.jpg" alt="صورة الأتمتة" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title fade-in">لماذا الأتمتة؟</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3 class="feature-title">توفير التكاليف</h3>
+          <p class="feature-description">تقليل العمالة اليدوية والاستغناء عن الإجراءات المكررة يساهم في خفض المصاريف التشغيلية بشكل كبير.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3 class="feature-title">توفير الوقت</h3>
+          <p class="feature-description">تنفيذ المهام بشكل آلي أسرع بكثير من الطرق التقليدية، مما يتيح لك استثمار الوقت في تطوير عملك.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-3">
+          <div class="feature-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h3 class="feature-title">تقليل الأخطاء</h3>
+          <p class="feature-description">تقل الأخطاء الناتجة عن العمل اليدوي المتكرر بشكل كبير، مما يحسن جودة الخدمة والمنتج بشكل ملحوظ.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-4">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">نمو أسرع</h3>
+          <p class="feature-description">أتمتة العمليات والإجراءات تدفع نحو التوسع وتطوير العمل بسرعة أكبر وبمخاطر أقل بكثير.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process" id="process">
+    <div class="container">
+      <h2 class="section-title fade-in">كيف نعمل؟</h2>
+      <div class="process-steps">
+        <div class="process-step fade-in delay-1">
+          <div class="step-number">1</div>
+          <h3 class="step-title">تحليل الاحتياج</h3>
+          <p class="step-description">نقوم بدراسة عملك وفهم تفاصيل العمليات الحالية لتحديد النقاط التي يمكن أتمتتها ونقترح الحلول الأنسب.</p>
+        </div>
+
+        <div class="process-step fade-in delay-2">
+          <div class="step-number">2</div>
+          <h3 class="step-title">التصميم</h3>
+          <p class="step-description">نصمم لك نظامًا مبنيًا خصيصًا لحل مشكلتك ونتأكد من أنه يتناسب مع احتياجاتك ويتكامل مع أنظمتك الحالية.</p>
+        </div>
+
+        <div class="process-step fade-in delay-3">
+          <div class="step-number">3</div>
+          <h3 class="step-title">التنفيذ</h3>
+          <p class="step-description">نقوم بتنفيذ الحل الأتمتة الذي تم تصميمه، ودمجه بعناية مع أنظمتك الحالية، مع إجراء اختبارات شاملة لضمان الأداء المثالي.</p>
+        </div>
+        
+        <div class="process-step fade-in delay-4">
+          <div class="step-number">4</div>
+          <h3 class="step-title">الدعم والمتابعة</h3>
+          <p class="step-description">نقدم تدريبًا شاملاً ودعمًا فنيًا مستمرًا لضمان تحقيق أقصى استفادة من النظام ونجاح تطبيقه في عملك على المدى الطويل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section class="packages" id="packages">
+    <div class="container">
+      <h2 class="section-title fade-in">الباقات والحلول المصممة لك</h2>
+      <div class="packages-slider swiper fade-in delay-1">
+        <div class="swiper-wrapper">
+          <!-- Slide 1: Medical Clinics -->
+          <div class="swiper-slide">
+            <div class="package-card">
+              <div>
+                <div class="feature-icon" style="font-size: 2rem; margin-bottom: 15px;"><i class="fas fa-clinic-medical"></i></div>
+                <h3 class="package-title">حلول للعيادات الطبية</h3>
+                <ul class="package-features">
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> جدولة مواعيد تلقائية</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> تذكيرات آلية للمرضى</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> إدارة سجلات المرضى الرقمية</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> أتمتة الفواتير والتقارير</li>
+                </ul>
+              </div>
+              <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
+            </div>
+          </div>
+          <!-- Slide 2: Commercial Companies -->
+          <div class="swiper-slide">
+            <div class="package-card">
+              <div>
+                <div class="feature-icon" style="font-size: 2rem; margin-bottom: 15px;"><i class="fas fa-briefcase"></i></div>
+                <h3 class="package-title">حلول للشركات التجارية</h3>
+                <ul class="package-features">
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> أتمتة إدارة علاقات العملاء (CRM)</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> تبسيط عمليات المبيعات والتسويق</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> إدارة المخزون والطلبات آليًا</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> تكامل الأنظمة المحاسبية</li>
+                </ul>
+              </div>
+              <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
+            </div>
+          </div>
+          <!-- Slide 3: Startups -->
+          <div class="swiper-slide">
+            <div class="package-card">
+              <div>
+                <div class="feature-icon" style="font-size: 2rem; margin-bottom: 15px;"><i class="fas fa-rocket"></i></div>
+                <h3 class="package-title">حلول للشركات الناشئة</h3>
+                <ul class="package-features">
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> أتمتة مهام التسويق الرقمي</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> إدارة المشاريع والمهام بكفاءة</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> تبسيط عمليات التوظيف HR</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> حلول مخصصة قابلة للتطوير</li>
+                </ul>
+              </div>
+              <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
+            </div>
+          </div>
+           <!-- Slide 4: E-commerce -->
+          <div class="swiper-slide">
+            <div class="package-card">
+              <div>
+                <div class="feature-icon" style="font-size: 2rem; margin-bottom: 15px;"><i class="fas fa-shopping-cart"></i></div>
+                <h3 class="package-title">حلول للتجارة الإلكترونية</h3>
+                <ul class="package-features">
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> أتمتة معالجة الطلبات</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> إدارة المخزون متعدد القنوات</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> خدمة عملاء آلية (Chatbots)</li>
+                  <li class="feature-item"><i class="fas fa-check-circle"></i> حملات تسويقية مخصصة</li>
+                </ul>
+              </div>
+              <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
+            </div>
+          </div>
+        </div>
+        <!-- Swiper Pagination -->
+        <div class="swiper-pagination" style="margin-top: 30px; position: relative;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners" id="partners">
+    <div class="container">
+      <h2 class="section-title fade-in">شركاؤنا في النجاح</h2>
+      <div class="partners-grid">
+        <img src="" alt="شعار الشريك 1" class="partner-logo fade-in delay-1">
+        <img src="" alt="شعار الشريك 2" class="partner-logo fade-in delay-2">
+        <img src="" alt="شعار الشريك 3" class="partner-logo fade-in delay-3">
+        <img src="" alt="شعار الشريك 4" class="partner-logo fade-in delay-4">
+        <img src="" alt="شعار الشريك 5" class="partner-logo fade-in delay-5">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">من نحن</h2>
+      <div class="about-content">
+        <div class="about-text fade-in delay-1">
+          <p>نحن فريق من الخبراء والمبتكرين في مجال تكنولوجيا المعلومات، متخصصون في تقديم حلول الأتمتة الذكية التي تساعد الشركات على تحقيق أهدافها بكفاءة وفعالية. نؤمن بأن التكنولوجيا هي المفتاح لتحويل التحديات إلى فرص، ونسعى جاهدين لتمكين عملائنا من خلال توفير أدوات وحلول متطورة ومخصصة.</p>
+          <p>مهمتنا هي تبسيط العمليات المعقدة، تحرير الموارد البشرية للتركيز على الإبداع والابتكار، ودفع عجلة النمو لشركائنا. نعمل بشغف لنكون الرواد في مجال الأتمتة، مقدمين قيمة حقيقية ومستدامة.</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">سنوات من الخبرة</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">مشروع مكتمل</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">رضا العملاء</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image fade-in delay-2">
+          <img src="1.jpg" alt="صورة فريق العمل أو مقر الشركة" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">تواصل معنا</h2>
+      <div class="contact-container">
+        <div class="contact-info fade-in delay-1">
+          <p style="margin-bottom: 30px; font-size: 1.1rem; opacity: 0.9;">هل لديك استفسار أو ترغب في مناقشة مشروعك؟ نحن هنا لمساعدتك. تواصل معنا عبر إحدى الطرق التالية أو املأ النموذج وسنعاود الاتصال بك قريبًا.</p>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div class="contact-text">
+              <h3>موقعنا</h3>
+              <p> مصر </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt contact-icon"></i>
+            <div class="contact-text">
+              <h3>الهاتف</h3>
+              <p><a href="tel:+966112345678">01099940030</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div class="contact-text">
+              <h3>البريد الإلكتروني</h3>
+              <p><a href="mailto:info@smartautomation.sa">info@smartautomation.sa</a></p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form fade-in delay-2">
+          <div class="form-group">
+            <input type="text" name="name" class="form-input" placeholder="الاسم الكامل" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-input" placeholder="البريد الإلكتروني" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" class="form-input" placeholder="رقم الهاتف (اختياري)" />
+          </div>
+          <div class="form-group">
+            <textarea name="message" class="form-input" placeholder="رسالتك أو استفسارك" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column fade-in delay-1">
+          <a href="#" class="logo">
+            <i class="fas fa-robot"></i>
+            <span>أتمتة ذكية</span>
+          </a>
+          <p>نقدم حلول أتمتة مبتكرة لتحويل أعمالك نحو مستقبل أكثر كفاءة وذكاء.</p>
+        </div>
+        <div class="footer-column fade-in delay-2">
+          <h3>روابط سريعة</h3>
+          <ul class="footer-links">
+            <li><a href="#features"><i class="fas fa-star"></i> المميزات</a></li>
+            <li><a href="#process"><i class="fas fa-cogs"></i> كيف نعمل</a></li>
+            <li><a href="#packages"><i class="fas fa-box-open"></i> الباقات</a></li>
+            <li><a href="#about"><i class="fas fa-users"></i> من نحن</a></li>
+            <li><a href="#contact"><i class="fas fa-headset"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div class="footer-column fade-in delay-3">
+          <h3>خدماتنا</h3>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-brain"></i> أتمتة العمليات (RPA)</a></li>
+            <li><a href="#"><i class="fas fa-code"></i> تطوير تطبيقات مخصصة</a></li>
+            <li><a href="#"><i class="fas fa-lightbulb"></i> استشارات التحول الرقمي</a></li>
+            <li><a href="#"><i class="fas fa-chart-pie"></i> تحليل البيانات والذكاء الاصطناعي</a></li>
+            <li><a href="#"><i class="fas fa-life-ring"></i> الدعم الفني والتدريب</a></li>
+          </ul>
+        </div>
+        <div class="footer-column fade-in delay-4">
+          <h3>تواصل معنا</h3>
+          <ul class="footer-links">
+            <li><span><i class="fas fa-map-marker-alt"></i> مصر </span></li>
+            <li><a href="tel:+966112345678"><i class="fas fa-phone-alt"></i> 01099940030 </a></li>
+            <li><a href="mailto:info@smartautomation.sa"><i class="fas fa-envelope"></i> info@smartautomation.sa</a></li>
+          </ul>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+             <a href="#" class="social-link" aria-label="whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© Atmata جميع الحقوق محفوظة.   .</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Navbar scroll effect
+    const nav = document.getElementById('navbar');
+    const navHeight = nav.offsetHeight; // Get navbar height for offsetting scroll
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Swiper initialization for Packages
+    const packagesSwiper = new Swiper('.packages-slider', {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      // navigation: { // Optional navigation buttons
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      breakpoints: {
+        0: { // For mobile screens
+          slidesPerView: 1,
+          spaceBetween: 20
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        992: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        }
+      }
+    });
+
+    // Intersection Observer for fade-in animations (optional, CSS handles basic fade-in)
+    // This can be used to ensure animations trigger correctly or for more complex scenarios.
+    // The current CSS with `animation: fadeIn ... forwards` will generally work on scroll.
+    // If you want strict control (e.g. pause/play), CSS needs `animation-play-state: paused;` initially.
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Element is visible, ensure animation plays if it was paused or add active class
+          // For current CSS, this is mostly for ensuring it triggers if browser optimization is aggressive
+          entry.target.style.opacity = '1'; // Fallback if animation doesn't kick in as expected
+          // entry.target.style.animationPlayState = 'running'; // If animations were paused
+          // observer.unobserve(entry.target); // Optional: Stop observing after first animation
+        }
+      });
+    };
+
+    const fadeInObserver = new IntersectionObserver(observerCallback, observerOptions);
+    fadeInElements.forEach(el => {
+      fadeInObserver.observe(el);
+    });
+
+    // Smooth scroll for nav links and other anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        // Ensure it's a valid internal link and not just "#"
+        if (href.length > 1 && href.startsWith("#")) {
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                e.preventDefault();
+                // Smooth scroll to target element, accounting for fixed navbar
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
