@@ -60,16 +60,14 @@
       transition: var(--transition);
     }
     
-    /* Ensure nav content is within container */
     nav .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 90%; /* Match global container width */
-        max-width: 1200px; /* Match global container max-width */
-        margin: 0 auto; /* Center the nav content */
+        width: 90%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
     }
-
 
     nav.scrolled {
       box-shadow: 0 5px 20px rgba(0, 120, 255, 0.1);
@@ -131,7 +129,7 @@
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 4px 15px rgba(0, 120, 255, 0.3);
-      text-decoration: none; /* For cases where it might be an <a> styled as button */
+      text-decoration: none; 
     }
 
     .cta-button:hover {
@@ -146,7 +144,7 @@
       align-items: center;
       justify-content: center;
       padding: 100px 0 50px;
-      padding-top: 120px; /* Account for fixed navbar height */
+      padding-top: 120px; 
       position: relative;
       overflow: hidden;
     }
@@ -223,7 +221,7 @@
 
     .hero-image img {
       width: 100%;
-      max-width: 500px; /* Control max image size */
+      max-width: 500px; 
       border-radius: 20px;
       box-shadow: 0 20px 50px rgba(0, 120, 255, 0.3);
       transform-style: preserve-3d;
@@ -252,44 +250,13 @@
       filter: blur(5px);
     }
 
-    .element-1 {
-      width: 300px;
-      height: 300px;
-      top: 10%;
-      right: 5%;
-      animation: float1 15s infinite ease-in-out;
-    }
+    .element-1 { width: 300px; height: 300px; top: 10%; right: 5%; animation: float1 15s infinite ease-in-out; }
+    .element-2 { width: 200px; height: 200px; bottom: 15%; left: 10%; animation: float2 20s infinite ease-in-out; }
+    .element-3 { width: 150px; height: 150px; top: 60%; right: 20%; animation: float3 18s infinite ease-in-out; }
 
-    .element-2 {
-      width: 200px;
-      height: 200px;
-      bottom: 15%;
-      left: 10%;
-      animation: float2 20s infinite ease-in-out;
-    }
-
-    .element-3 {
-      width: 150px;
-      height: 150px;
-      top: 60%;
-      right: 20%;
-      animation: float3 18s infinite ease-in-out;
-    }
-
-    @keyframes float1 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(50px, 30px); }
-    }
-
-    @keyframes float2 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-30px, 50px); }
-    }
-
-    @keyframes float3 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -40px); }
-    }
+    @keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, 30px); } }
+    @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-30px, 50px); } }
+    @keyframes float3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, -40px); } }
 
     /* Section Styling */
     section {
@@ -369,551 +336,331 @@
       border-color: rgba(0, 120, 255, 0.3);
     }
 
-    .feature-icon {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-
-    .feature-title {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      color: var(--accent-color);
-    }
-
-    .feature-description {
-      font-size: 1rem;
-      opacity: 0.9;
-      line-height: 1.6;
-    }
+    .feature-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+    .feature-title { font-size: 1.4rem; margin-bottom: 15px; color: var(--accent-color); }
+    .feature-description { font-size: 1rem; opacity: 0.9; line-height: 1.6; }
 
     /* Process Section */
-    .process {
-      background-color: var(--dark-bg);
-    }
+    .process { background-color: var(--dark-bg); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .process-step { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 30px; transition: var(--transition); position: relative; z-index: 2; overflow: hidden; }
+    .process-step:hover { transform: translateY(-10px); border-color: rgba(0, 120, 255, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+    .step-number { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-bg); color: var(--light-text); font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+    .step-title { font-size: 1.4rem; margin-bottom: 15px; }
+    .step-description { font-size: 1rem; opacity: 0.9; line-height: 1.6; }
 
-    .process-steps {
+    /* Portfolio Section */
+    .portfolio {
+      background-color: rgba(0, 29, 110, 0.05); 
+    }
+    .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
-
-    .process-step {
+    .portfolio-item {
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 30px;
-      transition: var(--transition);
-      position: relative;
-      z-index: 2;
+      border-radius: 15px;
       overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
-
-    .process-step:hover {
-      transform: translateY(-10px);
+    .portfolio-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
       border-color: rgba(0, 120, 255, 0.3);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
-
-    .step-number {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--gradient-bg);
-      color: var(--light-text);
-      font-weight: 700;
-      font-size: 1.2rem;
+    .portfolio-image {
+      width: 100%;
+      height: 250px; 
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .portfolio-item:hover .portfolio-image {
+      transform: scale(1.1);
+    }
+    .portfolio-caption {
+      padding: 25px;
+      background: rgba(18, 18, 18, 0.7); 
+      backdrop-filter: blur(5px);
+    }
+    .portfolio-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+    .portfolio-description {
+      font-size: 0.95rem;
+      opacity: 0.8;
       margin-bottom: 20px;
-    }
-
-    .step-title {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-    }
-
-    .step-description {
-      font-size: 1rem;
-      opacity: 0.9;
       line-height: 1.6;
+    }
+    .portfolio-link {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex; 
+      align-items: center;
+      gap: 8px;
+    }
+    .portfolio-link i {
+        transition: transform 0.3s ease;
+    }
+    .portfolio-link:hover {
+      color: var(--accent-color);
+    }
+    .portfolio-link:hover i {
+      transform: translateX(-5px); 
     }
 
     /* Packages Section */
-    .packages {
-      background-color: rgba(0, 29, 110, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
+    .packages { background-color: rgba(0, 29, 110, 0.05); position: relative; overflow: hidden; }
+    .packages:after { content: ''; position: absolute; bottom: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 120, 255, 0.15) 0%, transparent 70%); z-index: 0; }
+    .packages-slider { width: 100%; overflow: visible; }
+    .swiper-slide { height: auto; display: flex; flex-direction: column; }
+    .package-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 30px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); overflow: hidden; position: relative; z-index: 2; }
+    .package-card:hover { transform: translateY(-10px) scale(1.03); border-color: rgba(0, 120, 255, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+    .package-card:before { content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%); z-index: -1; }
+    .package-title { font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-color); font-weight: 700; }
+    .package-features { margin-bottom: 30px; list-style: none; padding-left: 0; flex-grow: 1; }
+    .feature-item { display: flex; align-items: center; margin-bottom: 15px; gap: 10px; }
+    .feature-item i { color: var(--primary-color); font-size: 1.2rem; }
+    
+    .swiper-pagination-bullet { background-color: var(--light-text) !important; opacity: 0.5 !important; }
+    .swiper-pagination-bullet-active { background-color: var(--primary-color) !important; opacity: 1 !important; }
 
-    .packages:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(0, 120, 255, 0.15) 0%, transparent 70%);
-      z-index: 0;
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--dark-bg); 
     }
-
-    .packages-slider {
-      width: 100%;
-      overflow: visible; /* Important for hover scale effects on cards */
-    }
-    .swiper-slide {
-        height: auto; /* Ensure slides adapt to content height */
-        display: flex; /* Helps with card alignment if needed */
-        flex-direction: column;
-    }
-
-    .package-card {
+    .testimonial-card {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 30px;
-      height: 100%; /* Make card fill slide height */
+      text-align: center;
+      height: 100%; 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: var(--transition);
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
     }
-
-    .package-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      border-color: rgba(0, 120, 255, 0.3);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 120, 255, 0.2);
     }
-
-    .package-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-      z-index: -1;
-    }
-
-    .package-title {
-      font-size: 1.5rem;
+    .testimonial-stars {
       margin-bottom: 20px;
-      color: var(--accent-color);
-      font-weight: 700;
-    }
-
-    .package-features {
-      margin-bottom: 30px;
-      list-style: none; /* Remove default list styling */
-      padding-left: 0; /* Remove default padding */
-      flex-grow: 1; /* Allow features list to take available space */
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      gap: 10px;
-    }
-
-    .feature-item i {
-      color: var(--primary-color);
+      color: #FFD700; 
       font-size: 1.2rem;
     }
-    
-    .swiper-pagination-bullet {
+    .testimonial-stars .far { 
+        opacity: 0.5;
+    }
+    .testimonial-quote {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-style: italic;
+      opacity: 0.9;
+      flex-grow: 1; 
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: auto; 
+    }
+    .testimonial-avatar-placeholder {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-text);
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: 2px solid var(--accent-color);
+    }
+    .testimonial-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--accent-color);
+    }
+    .testimonial-company {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    .testimonials-slider .swiper-pagination-bullet {
         background-color: var(--light-text) !important;
         opacity: 0.5 !important;
     }
-    .swiper-pagination-bullet-active {
+    .testimonials-slider .swiper-pagination-bullet-active {
         background-color: var(--primary-color) !important;
         opacity: 1 !important;
     }
 
 
     /* Partners Section */
+    .partners { background-color: var(--dark-bg); padding: 80px 0; }
+    .partners-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; }
+    .partner-logo { filter: grayscale(100%) brightness(1.5); opacity: 0.7; height: 60px; width: auto; transition: var(--transition); }
+    .partner-logo:hover { filter: grayscale(0%) brightness(1); opacity: 1; transform: scale(1.1); }
+
+        /* ... (الأنماط السابقة) ... */
+
+    /* Partners Section - Icon Slider */
     .partners {
-      background-color: var(--dark-bg);
+      background-color: var(--dark-bg); /* Or rgba(0, 29, 110, 0.05) if you prefer lighter */
       padding: 80px 0;
     }
 
-    .partners-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center; /* Vertically align logos */
-      flex-wrap: wrap;
-      gap: 40px; /* Gap between logos */
-    }
-
-    .partner-logo {
-      filter: grayscale(100%) brightness(1.5);
-      opacity: 0.7;
-      height: 60px; /* Fixed height for logos */
-      width: auto; /* Maintain aspect ratio */
-      transition: var(--transition);
-    }
-
-    .partner-logo:hover {
-      filter: grayscale(0%) brightness(1);
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    /* About Section */
-    .about {
-      background-color: rgba(0, 29, 110, 0.05);
-      position: relative;
+    .partners-slider-container {
+      width: 100%;
       overflow: hidden;
+      margin-top: 40px; /* Space below section title */
+      position: relative; /* For potential ::before/::after pseudo-elements for fading edges */
     }
 
-    .about-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 50px;
+    .partners-icon-strip {
+      display: flex;
       align-items: center;
+      white-space: nowrap; /* Prevents icons from wrapping */
+      /* Animation: name duration timing-function iteration-count */
+      /* ------->>> قم بتغيير القيمة هنا لتعديل السرعة <<<------- */
+      animation: scrollIcons 40s linear infinite; /* مثال: تم تغييرها إلى 40 ثانية */
     }
 
-    .about-text {
-      line-height: 1.8;
-    }
-
-    .about-text p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-
-    .about-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .stat-item {
-      flex: 1;
-      min-width: 150px;
-      text-align: center; /* Center stat items */
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .stat-label {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    .about-image {
-      position: relative;
-      text-align: center; /* Center image if container is wider */
-    }
-
-    .about-image img {
-      width: 100%;
-      max-width: 500px; /* Control max image size */
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0, 120, 255, 0.3);
-    }
-
-    /* Contact Section */
-    .contact {
-      background-color: var(--dark-bg);
-      position: relative;
-    }
-
-    .contact-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 50px;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .contact-item {
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-    }
-
-    .contact-icon {
-      font-size: 1.5rem;
-      color: var(--primary-color);
-      margin-top: 5px; /* Align icon with first line of text */
-    }
-
-    .contact-text h3 {
-      margin-bottom: 5px;
-      font-size: 1.2rem; /* Slightly larger heading */
-    }
-
-    .contact-text p, .contact-text a {
+    .partners-icon-strip i {
+      font-size: 3rem; /* Adjust size as needed */
       color: var(--light-text);
-      opacity: 0.9;
-      text-decoration: none;
+      opacity: 0.6;
+      margin: 0 30px; /* Spacing between icons */
       transition: var(--transition);
-      font-size: 1rem; /* Consistent text size */
+      flex-shrink: 0; /* Prevent icons from shrinking */
     }
 
-    .contact-text a:hover {
-      color: var(--primary-color);
+    .partners-icon-strip i:hover {
       opacity: 1;
+      color: var(--primary-color);
+      transform: scale(1.15);
     }
 
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    @keyframes scrollIcons {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        /* Scroll by half the width because we duplicated the icons */
+        transform: translateX(-50%); 
+      }
     }
 
-    .form-group {
-      position: relative;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      color: var(--light-text);
-      font-family: 'Cairo', sans-serif;
-      transition: var(--transition);
-      font-size: 1rem; /* Ensure readable font size */
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      background: rgba(0, 120, 255, 0.1); /* Subtle focus background */
-    }
-
-    textarea.form-input {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .form-submit {
-      background: var(--gradient-bg);
-      color: var(--light-text);
-      border: none;
-      padding: 15px 30px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-family: 'Cairo', sans-serif;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 10px;
-      font-size: 1rem; /* Consistent button font size */
-    }
-
-    .form-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 120, 255, 0.3);
-    }
-
-    /* Footer */
-    footer {
-      background-color: #0a0a0a;
-      padding: 80px 0 30px;
-      margin-top: auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer:before {
+    /* Optional: Add fading edges to the slider for a smoother look */
+    .partners-slider-container::before,
+    .partners-slider-container::after {
       content: '';
       position: absolute;
       top: 0;
+      bottom: 0;
+      width: 100px; /* Width of the fade */
+      z-index: 2;
+      pointer-events: none; /* Allow clicks through */
+    }
+    .partners-slider-container::before {
       left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--gradient-bg);
+      background: linear-gradient(to right, var(--dark-bg) 0%, transparent 100%);
+    }
+    .partners-slider-container::after {
+      right: 0;
+      background: linear-gradient(to left, var(--dark-bg) 0%, transparent 100%);
     }
 
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 50px;
-      margin-bottom: 50px;
-    }
+    /* ... (الأنماط التالية) ... */
 
-    .footer-column h3 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      color: var(--primary-color);
-    }
-    
-    .footer-column .logo { /* Style logo in footer */
-        font-size: 1.5rem; 
-        margin-bottom: 20px; 
-        display: inline-block;
-    }
-    .footer-column p {
-        opacity:0.8; 
-        line-height: 1.7;
-        font-size: 0.9rem;
-    }
+    /* About Section */
+    .about { background-color: rgba(0, 29, 110, 0.05); position: relative; overflow: hidden; }
+    .about-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center; }
+    .about-text { line-height: 1.8; }
+    .about-text p { margin-bottom: 20px; font-size: 1.1rem; }
+    .about-stats { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
+    .stat-item { flex: 1; min-width: 150px; text-align: center; }
+    .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin-bottom: 10px; }
+    .stat-label { font-size: 1rem; opacity: 0.9; }
+    .about-image { position: relative; text-align: center; }
+    .about-image img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 120, 255, 0.3); }
 
+    /* Contact Section */
+    .contact { background-color: var(--dark-bg); position: relative; }
+    .contact-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; }
+    .contact-info { display: flex; flex-direction: column; gap: 30px; }
+    .contact-item { display: flex; gap: 15px; align-items: flex-start; }
+    .contact-icon { font-size: 1.5rem; color: var(--primary-color); margin-top: 5px; }
+    .contact-text h3 { margin-bottom: 5px; font-size: 1.2rem; }
+    .contact-text p, .contact-text a { color: var(--light-text); opacity: 0.9; text-decoration: none; transition: var(--transition); font-size: 1rem; }
+    .contact-text a:hover { color: var(--primary-color); opacity: 1; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-group { position: relative; }
+    .form-input { width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: var(--light-text); font-family: 'Cairo', sans-serif; transition: var(--transition); font-size: 1rem; }
+    .form-input:focus { outline: none; border-color: var(--primary-color); background: rgba(0, 120, 255, 0.1); }
+    textarea.form-input { min-height: 150px; resize: vertical; }
+    .form-submit { background: var(--gradient-bg); color: var(--light-text); border: none; padding: 15px 30px; border-radius: 10px; font-weight: 600; font-family: 'Cairo', sans-serif; cursor: pointer; transition: var(--transition); margin-top: 10px; font-size: 1rem; }
+    .form-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 120, 255, 0.3); }
 
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      list-style: none; /* Remove default list styling */
-      padding-left: 0; /* Remove default padding */
-    }
-
-    .footer-links a, .footer-links span { /* For non-link items like address */
-      color: var(--light-text);
-      text-decoration: none;
-      transition: var(--transition);
-      opacity: 0.8;
-      font-size: 0.9rem;
-      display: flex; /* For icon alignment */
-      align-items: center; /* For icon alignment */
-      gap: 8px; /* Gap between icon and text */
-    }
-    .footer-links i {
-        color: var(--primary-color); /* Icon color same as primary */
-    }
-
-    .footer-links a:hover {
-      color: var(--primary-color);
-      opacity: 1;
-      transform: translateX(5px);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--light-text);
-      font-size: 1.2rem;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .social-link:hover {
-      background: var(--gradient-bg);
-      transform: translateY(-5px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-bottom p {
-      opacity: 0.7;
-      font-size: 0.9rem;
-    }
+    /* Footer */
+    footer { background-color: #0a0a0a; padding: 80px 0 30px; margin-top: auto; position: relative; overflow: hidden; }
+    footer:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gradient-bg); }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
+    .footer-column h3 { font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-color); }
+    .footer-column .logo { font-size: 1.5rem; margin-bottom: 20px; display: inline-block; }
+    .footer-column p { opacity:0.8; line-height: 1.7; font-size: 0.9rem; }
+    .footer-links { display: flex; flex-direction: column; gap: 15px; list-style: none; padding-left: 0; }
+    .footer-links a, .footer-links span { color: var(--light-text); text-decoration: none; transition: var(--transition); opacity: 0.8; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    .footer-links i { color: var(--primary-color); }
+    .footer-links a:hover { color: var(--primary-color); opacity: 1; transform: translateX(5px); }
+    .social-links { display: flex; gap: 15px; margin-top: 20px; }
+    .social-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); color: var(--light-text); font-size: 1.2rem; transition: var(--transition); text-decoration: none; }
+    .social-link:hover { background: var(--gradient-bg); transform: translateY(-5px); }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .footer-bottom p { opacity: 0.7; font-size: 0.9rem; }
 
     /* Responsive */
     @media (max-width: 992px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-content {
-        order: 1;
-        text-align: center;
-        padding: 0 20px;
-      }
-
-      .hero-cta {
-        justify-content: center;
-      }
-
-      .hero-image {
-        order: 0;
-        margin-bottom: 40px;
-        text-align: center; /* Center image on smaller screens */
-      }
-      .hero-image img {
-        max-width: 80%; /* Adjust image size on smaller screens */
-      }
-
-
-      .nav-links {
-        display: none; /* Simplistic: hide nav links. Implement burger menu for real app */
-      }
-      nav .container .cta-button {
-        display: none; /* Hide CTA button on nav for smaller screens if nav-links are hidden */
-      }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-content { order: 1; text-align: center; padding: 0 20px; }
+      .hero-cta { justify-content: center; }
+      .hero-image { order: 0; margin-bottom: 40px; text-align: center; }
+      .hero-image img { max-width: 80%; }
+      .nav-links { display: none; }
+      nav .container .cta-button { display: none; }
+      .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } /* Adjust portfolio for tablets */
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .about-content, .contact-container {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-info {
-        order: 1; /* Form first then info on mobile */
-      }
-
-      .contact-form {
-        order: 0;
-      }
-      .footer-content {
-        grid-template-columns: 1fr; /* Stack footer columns */
-        text-align: center;
-      }
-      .footer-column .logo, .social-links {
-        justify-content: center;
-      }
-      .footer-links {
-        align-items: center;
-      }
-       .footer-links a, .footer-links span {
-        justify-content: center; /* Center footer link items */
-      }
+      .section-title { font-size: 2rem; }
+      .hero-title { font-size: 2.5rem; }
+      .about-content, .contact-container { grid-template-columns: 1fr; }
+      .contact-info { order: 1; }
+      .contact-form { order: 0; }
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
+      .footer-column .logo, .social-links { justify-content: center; }
+      .footer-links { align-items: center; }
+      .footer-links a, .footer-links span { justify-content: center; }
+      .portfolio-grid { grid-template-columns: 1fr; } /* Portfolio items stack on mobile */
     }
 
     /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 0.5s forwards;
-      /* animation-play-state: paused; */ /* If controlled strictly by JS observer */
-    }
-
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { opacity: 0; animation: fadeIn 0.5s forwards; }
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
@@ -932,7 +679,9 @@
       <div class="nav-links">
         <a href="#features">المميزات</a>
         <a href="#process">كيف نعمل</a>
+        <a href="#portfolio">أعمالنا</a> <!-- Optional: Add to nav -->
         <a href="#packages">الباقات</a>
+        <a href="#testimonials">آراء العملاء</a> <!-- Optional: Add to nav -->
         <a href="#about">من نحن</a>
         <a href="#contact">تواصل معنا</a>
       </div>
@@ -967,33 +716,22 @@
       <h2 class="section-title fade-in">لماذا الأتمتة؟</h2>
       <div class="features-grid">
         <div class="feature-card fade-in delay-1">
-          <div class="feature-icon">
-            <i class="fas fa-coins"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-coins"></i></div>
           <h3 class="feature-title">توفير التكاليف</h3>
           <p class="feature-description">تقليل العمالة اليدوية والاستغناء عن الإجراءات المكررة يساهم في خفض المصاريف التشغيلية بشكل كبير.</p>
         </div>
-
         <div class="feature-card fade-in delay-2">
-          <div class="feature-icon">
-            <i class="fas fa-clock"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-clock"></i></div>
           <h3 class="feature-title">توفير الوقت</h3>
           <p class="feature-description">تنفيذ المهام بشكل آلي أسرع بكثير من الطرق التقليدية، مما يتيح لك استثمار الوقت في تطوير عملك.</p>
         </div>
-
         <div class="feature-card fade-in delay-3">
-          <div class="feature-icon">
-            <i class="fas fa-check-circle"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
           <h3 class="feature-title">تقليل الأخطاء</h3>
           <p class="feature-description">تقل الأخطاء الناتجة عن العمل اليدوي المتكرر بشكل كبير، مما يحسن جودة الخدمة والمنتج بشكل ملحوظ.</p>
         </div>
-
         <div class="feature-card fade-in delay-4">
-          <div class="feature-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
           <h3 class="feature-title">نمو أسرع</h3>
           <p class="feature-description">أتمتة العمليات والإجراءات تدفع نحو التوسع وتطوير العمل بسرعة أكبر وبمخاطر أقل بكثير.</p>
         </div>
@@ -1011,23 +749,53 @@
           <h3 class="step-title">تحليل الاحتياج</h3>
           <p class="step-description">نقوم بدراسة عملك وفهم تفاصيل العمليات الحالية لتحديد النقاط التي يمكن أتمتتها ونقترح الحلول الأنسب.</p>
         </div>
-
         <div class="process-step fade-in delay-2">
           <div class="step-number">2</div>
           <h3 class="step-title">التصميم</h3>
           <p class="step-description">نصمم لك نظامًا مبنيًا خصيصًا لحل مشكلتك ونتأكد من أنه يتناسب مع احتياجاتك ويتكامل مع أنظمتك الحالية.</p>
         </div>
-
         <div class="process-step fade-in delay-3">
           <div class="step-number">3</div>
           <h3 class="step-title">التنفيذ</h3>
           <p class="step-description">نقوم بتنفيذ الحل الأتمتة الذي تم تصميمه، ودمجه بعناية مع أنظمتك الحالية، مع إجراء اختبارات شاملة لضمان الأداء المثالي.</p>
         </div>
-        
         <div class="process-step fade-in delay-4">
           <div class="step-number">4</div>
           <h3 class="step-title">الدعم والمتابعة</h3>
           <p class="step-description">نقدم تدريبًا شاملاً ودعمًا فنيًا مستمرًا لضمان تحقيق أقصى استفادة من النظام ونجاح تطبيقه في عملك على المدى الطويل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2 class="section-title fade-in">معرض أعمالنا</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item fade-in delay-1">
+          <img src="portfolio-1.png" alt="مشروع 1" class="portfolio-image">
+          <div class="portfolio-caption">
+            <h3 class="portfolio-title">أتمتة نظام الحجوزات الطبية</h3>
+            <p class="portfolio-description">تطوير نظام متكامل لأتمتة حجوزات المواعيد وإدارة سجلات المرضى لعيادة طبية رائدة.</p>
+            <a href="#" class="portfolio-link">شاهد المشروع <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in delay-2">
+          <img src="portfolio-2.png" alt="مشروع 2" class="portfolio-image">
+          <div class="portfolio-caption">
+            <h3 class="portfolio-title">نظام CRM مخصص لشركة تجارية</h3>
+            <p class="portfolio-description">تصميم وتنفيذ نظام إدارة علاقات عملاء (CRM) مخصص لتتبع المبيعات وتحسين خدمة العملاء.</p>
+            <a href="#" class="portfolio-link">شاهد المشروع <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in delay-3">
+          <img src="portfolio-3.png" alt="مشروع 3" class="portfolio-image">
+          <div class="portfolio-caption">
+            <h3 class="portfolio-title">أتمتة عمليات التجارة الإلكترونية</h3>
+            <p class="portfolio-description">بناء حلول لأتمتة إدارة المخزون، معالجة الطلبات، وخدمة العملاء لمتجر إلكتروني.</p>
+            <a href="#" class="portfolio-link">شاهد المشروع <i class="fas fa-arrow-left"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1039,7 +807,6 @@
       <h2 class="section-title fade-in">الباقات والحلول المصممة لك</h2>
       <div class="packages-slider swiper fade-in delay-1">
         <div class="swiper-wrapper">
-          <!-- Slide 1: Medical Clinics -->
           <div class="swiper-slide">
             <div class="package-card">
               <div>
@@ -1055,7 +822,6 @@
               <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
             </div>
           </div>
-          <!-- Slide 2: Commercial Companies -->
           <div class="swiper-slide">
             <div class="package-card">
               <div>
@@ -1071,7 +837,6 @@
               <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
             </div>
           </div>
-          <!-- Slide 3: Startups -->
           <div class="swiper-slide">
             <div class="package-card">
               <div>
@@ -1087,7 +852,6 @@
               <a href="#contact" class="cta-button" style="margin-top: 20px; display: inline-block; width: auto;">اكتشف المزيد</a>
             </div>
           </div>
-           <!-- Slide 4: E-commerce -->
           <div class="swiper-slide">
             <div class="package-card">
               <div>
@@ -1104,25 +868,149 @@
             </div>
           </div>
         </div>
-        <!-- Swiper Pagination -->
         <div class="swiper-pagination" style="margin-top: 30px; position: relative;"></div>
       </div>
     </div>
   </section>
 
-  <!-- Partners Section -->
-  <!--section class="partners" id="partners">
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
     <div class="container">
-      <h2 class="section-title fade-in">شركاؤنا في النجاح</h2>
-      <div class="partners-grid">
-        <img src="" alt="شعار الشريك 1" class="partner-logo fade-in delay-1">
-        <img src="" alt="شعار الشريك 2" class="partner-logo fade-in delay-2">
-        <img src="" alt="شعار الشريك 3" class="partner-logo fade-in delay-3">
-        <img src="" alt="شعار الشريك 4" class="partner-logo fade-in delay-4">
-        <img src="" alt="شعار الشريك 5" class="partner-logo fade-in delay-5">
+      <h2 class="section-title fade-in">ماذا يقول عملاؤنا</h2>
+      <div class="testimonials-slider swiper fade-in delay-1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"كانت تجربتنا مع فريق أتمتة رائعة! ساعدونا في تحويل عملياتنا بشكل جذري وزيادة كفاءتنا. أنصح بهم بشدة."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">أع</div>
+                <div>
+                  <h4 class="testimonial-name">أحمد عبدالله</h4>
+                  <p class="testimonial-company">المدير التنفيذي، شركة النماء</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"خدمة ممتازة ودعم فني سريع الاستجابة. حلول الأتمتة التي قدموها وفرت علينا الكثير من الوقت والجهد."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">فع</div>
+                <div>
+                  <h4 class="testimonial-name">فاطمة علي</h4>
+                  <p class="testimonial-company">مديرة العمليات، مؤسسة الإبداع</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </div>
+              <p class="testimonial-quote">"أحدثت حلولهم فرقًا كبيرًا في تبسيط إجراءاتنا اليومية. الفريق محترف ومتعاون للغاية."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar-placeholder">خ م</div>
+                <div>
+                  <h4 class="testimonial-name">خالد محمود</h4>
+                  <p class="testimonial-company">صاحب شركة، الريادة للتجارة</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination" style="margin-top: 30px; position: relative;"></div>
       </div>
     </div>
-  </section-->
+  </section>
+
+  <!-- Partners Section (Commented out as in original) -->
+  <!-- Testimonials Section ... (الكود السابق) -->
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners" id="partners">
+    <div class="container">
+      <h2 class="section-title fade-in">شركاؤنا والتقنيات التي نعتمدها</h2>
+      <div class="partners-slider-container fade-in delay-1">
+        <div class="partners-icon-strip">
+          <!-- Set 1 of Icons (30 icons) -->
+          <i class="fab fa-whatsapp" title="WhatsApp"></i>
+          <i class="fab fa-figma" title="Figma"></i>
+          <i class="fab fa-telegram" title="Telegram"></i>
+          <i class="fab fa-slack" title="Slack"></i>
+          <i class="fas fa-robot" title="Automation Bots"></i>
+          <i class="fas fa-brain" title="Artificial Intelligence"></i>
+          <i class="fas fa-code" title="Custom Development"></i>
+          <i class="fab fa-github" title="GitHub"></i>
+          <i class="fab fa-trello" title="Trello"></i>
+          <i class="fas fa-chart-pie" title="Data Analytics"></i>
+          <i class="fas fa-database" title="Databases"></i>
+          <i class="fas fa-cloud" title="Cloud Solutions"></i>
+          <i class="fab fa-aws" title="Amazon Web Services"></i>
+          <i class="fab fa-google-drive" title="Google Drive"></i>
+          <i class="fab fa-dropbox" title="Dropbox"></i>
+          <i class="fas fa-cogs" title="Process Automation"></i>
+          <i class="fas fa-project-diagram" title="Workflow Management"></i>
+          <i class="fab fa-python" title="Python"></i>
+          <i class="fab fa-node-js" title="Node.js"></i>
+          <i class="fab fa-react" title="React"></i>
+          <i class="fab fa-docker" title="Docker"></i>
+          <i class="fas fa-envelope" title="Email Automation"></i>
+          <i class="fas fa-mobile-alt" title="Mobile Integration"></i>
+          <i class="fas fa-shield-alt" title="Security Automation"></i>
+          <i class="fas fa-search-dollar" title="Financial Tech"></i>
+          <i class="fas fa-users-cog" title="CRM Systems"></i>
+          <i class="fab fa-linkedin" title="LinkedIn"></i>
+          <i class="fab fa-youtube" title="YouTube"></i>
+          <i class="fas fa-bolt" title="Zapier/IFTTT"></i>
+          <i class="fab fa-microsoft" title="Microsoft Azure/365"></i>
+
+          <!-- Set 2 of Icons ( 똑같은 30 아이콘 반복 ) -->
+          <i class="fab fa-whatsapp" title="WhatsApp"></i>
+          <i class="fab fa-figma" title="Figma"></i>
+          <i class="fab fa-telegram" title="Telegram"></i>
+          <i class="fab fa-slack" title="Slack"></i>
+          <i class="fas fa-robot" title="Automation Bots"></i>
+          <i class="fas fa-brain" title="Artificial Intelligence"></i>
+          <i class="fas fa-code" title="Custom Development"></i>
+          <i class="fab fa-github" title="GitHub"></i>
+          <i class="fab fa-trello" title="Trello"></i>
+          <i class="fas fa-chart-pie" title="Data Analytics"></i>
+          <i class="fas fa-database" title="Databases"></i>
+          <i class="fas fa-cloud" title="Cloud Solutions"></i>
+          <i class="fab fa-aws" title="Amazon Web Services"></i>
+          <i class="fab fa-google-drive" title="Google Drive"></i>
+          <i class="fab fa-dropbox" title="Dropbox"></i>
+          <i class="fas fa-cogs" title="Process Automation"></i>
+          <i class="fas fa-project-diagram" title="Workflow Management"></i>
+          <i class="fab fa-python" title="Python"></i>
+          <i class="fab fa-node-js" title="Node.js"></i>
+          <i class="fab fa-react" title="React"></i>
+          <i class="fab fa-docker" title="Docker"></i>
+          <i class="fas fa-envelope" title="Email Automation"></i>
+          <i class="fas fa-mobile-alt" title="Mobile Integration"></i>
+          <i class="fas fa-shield-alt" title="Security Automation"></i>
+          <i class="fas fa-search-dollar" title="Financial Tech"></i>
+          <i class="fas fa-users-cog" title="CRM Systems"></i>
+          <i class="fab fa-linkedin" title="LinkedIn"></i>
+          <i class="fab fa-youtube" title="YouTube"></i>
+          <i class="fas fa-bolt" title="Zapier/IFTTT"></i>
+          <i class="fab fa-microsoft" title="Microsoft Azure/365"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+  <!-- (الكود التالي) ... -->
 
   <!-- About Section -->
   <section class="about" id="about">
@@ -1172,7 +1060,7 @@
             <i class="fas fa-phone-alt contact-icon"></i>
             <div class="contact-text">
               <h3>الهاتف</h3>
-              <p><a href="tel:+966112345678">01099940030</a></p>
+              <p><a href="tel:+201099940030">01099940030</a></p>
             </div>
           </div>
           <div class="contact-item">
@@ -1198,6 +1086,10 @@
           </div>
           <button type="submit" class="form-submit">إرسال الرسالة</button>
         </form>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
       </div>
     </div>
   </section>
@@ -1218,7 +1110,9 @@
           <ul class="footer-links">
             <li><a href="#features"><i class="fas fa-star"></i> المميزات</a></li>
             <li><a href="#process"><i class="fas fa-cogs"></i> كيف نعمل</a></li>
+            <li><a href="#portfolio"><i class="fas fa-briefcase"></i> أعمالنا</a></li>
             <li><a href="#packages"><i class="fas fa-box-open"></i> الباقات</a></li>
+            <li><a href="#testimonials"><i class="fas fa-comments"></i> آراء العملاء</a></li>
             <li><a href="#about"><i class="fas fa-users"></i> من نحن</a></li>
             <li><a href="#contact"><i class="fas fa-headset"></i> تواصل معنا</a></li>
           </ul>
@@ -1228,6 +1122,7 @@
           <ul class="footer-links">
             <li><a href="#"><i class="fas fa-brain"></i> أتمتة العمليات (RPA)</a></li>
             <li><a href="#"><i class="fas fa-code"></i> تطوير تطبيقات مخصصة</a></li>
+            <li><a href="#"><i class="fas fa-palette"></i> تصميم المواقع</a></li>
             <li><a href="#"><i class="fas fa-lightbulb"></i> استشارات التحول الرقمي</a></li>
             <li><a href="#"><i class="fas fa-chart-pie"></i> تحليل البيانات والذكاء الاصطناعي</a></li>
             <li><a href="#"><i class="fas fa-life-ring"></i> الدعم الفني والتدريب</a></li>
@@ -1237,14 +1132,14 @@
           <h3>تواصل معنا</h3>
           <ul class="footer-links">
             <li><span><i class="fas fa-map-marker-alt"></i> مصر </span></li>
-            <li><a href="tel:+966112345678"><i class="fas fa-phone-alt"></i> 01099940030 </a></li>
+            <li><a href="tel:+201099940030"><i class="fas fa-phone-alt"></i> 01099940030 </a></li>
             <li><a href="mailto:info@smartautomation.sa"><i class="fas fa-envelope"></i> info@smartautomation.sa</a></li>
           </ul>
           <div class="social-links">
             <a href="https://www.facebook.com/TAKKA.eg?mibextid=ZbWKwL" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="www.linkedin.com/in/ahmed-yahya-83baaa325" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-yahya-83baaa325" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://www.instagram.com/atmata.eg?igsh=MWVkazlxNzNnbnV5cw==" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-             <a href="https://wh.ms/201099940030" class="social-link" aria-label="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/201099940030" class="social-link" aria-label="whatsapp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
       </div>
@@ -1255,102 +1150,155 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    // Navbar scroll effect
-    const nav = document.getElementById('navbar');
-    const navHeight = nav.offsetHeight; // Get navbar height for offsetting scroll
+  <!-- Firebase & Frontend Enhancements -->
+<script type="module">
+  // استيراد مكتبات Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+  // إعدادات Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyD7GJCzddDLE6B62HRnUY8x02xhq0vju6A",
+    authDomain: "resala-12132.firebaseapp.com",
+    databaseURL: "https://resala-12132-default-rtdb.firebaseio.com",
+    projectId: "resala-12132",
+    storageBucket: "resala-12132.appspot.com",
+    messagingSenderId: "630917202997",
+    appId: "1:630917202997:web:ceeb420ab7ae242583dd7c",
+    measurementId: "G-CFSYSPDB0L"
+  };
+
+  // تهيئة Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+
+  // التعامل مع نموذج الاتصال
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const phone = contactForm.phone.value.trim();
+      const message = contactForm.message.value.trim();
+
+      if (!name || !email || !phone || !message) {
+        alert('يرجى ملء جميع الحقول قبل الإرسال.');
+        return;
       }
-    });
 
-    // Swiper initialization for Packages
-    const packagesSwiper = new Swiper('.packages-slider', {
-      loop: true,
-      grabCursor: true,
-      spaceBetween: 30,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      // navigation: { // Optional navigation buttons
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
-      breakpoints: {
-        0: { // For mobile screens
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        }
-      }
-    });
-
-    // Intersection Observer for fade-in animations (optional, CSS handles basic fade-in)
-    // This can be used to ensure animations trigger correctly or for more complex scenarios.
-    // The current CSS with `animation: fadeIn ... forwards` will generally work on scroll.
-    // If you want strict control (e.g. pause/play), CSS needs `animation-play-state: paused;` initially.
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1 // Trigger when 10% of the element is visible
-    };
-
-    const observerCallback = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Element is visible, ensure animation plays if it was paused or add active class
-          // For current CSS, this is mostly for ensuring it triggers if browser optimization is aggressive
-          entry.target.style.opacity = '1'; // Fallback if animation doesn't kick in as expected
-          // entry.target.style.animationPlayState = 'running'; // If animations were paused
-          // observer.unobserve(entry.target); // Optional: Stop observing after first animation
-        }
-      });
-    };
-
-    const fadeInObserver = new IntersectionObserver(observerCallback, observerOptions);
-    fadeInElements.forEach(el => {
-      fadeInObserver.observe(el);
-    });
-
-    // Smooth scroll for nav links and other anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        // Ensure it's a valid internal link and not just "#"
-        if (href.length > 1 && href.startsWith("#")) {
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                e.preventDefault();
-                // Smooth scroll to target element, accounting for fixed navbar
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - navHeight;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
+      push(ref(database, 'contacts'), {
+        name,
+        email,
+        phone,
+        message,
+        timestamp: Date.now()
+      }).then(() => {
+        alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+        contactForm.reset();
+      }).catch((error) => {
+        console.error('خطأ أثناء إرسال البيانات:', error);
+        alert('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.');
       });
     });
+  }
+</script>
 
-  </script>
+<script>
+  // تأثير شريط التنقل عند التمرير
+  const nav = document.getElementById('navbar');
+  const navHeight = nav.offsetHeight;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // تهيئة Swiper لعروض الباقات
+  const packagesSwiper = new Swiper('.packages-slider', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.packages-slider .swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      0: { slidesPerView: 1, spaceBetween: 20 },
+      768: { slidesPerView: 2, spaceBetween: 30 },
+      992: { slidesPerView: 3, spaceBetween: 30 }
+    }
+  });
+
+  // تهيئة Swiper لشهادات العملاء
+  const testimonialsSwiper = new Swiper('.testimonials-slider', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.testimonials-slider .swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      0: { slidesPerView: 1, spaceBetween: 20 },
+      768: { slidesPerView: 2, spaceBetween: 30 },
+      992: { slidesPerView: 2, spaceBetween: 30 }
+    }
+  });
+
+  // ظهور العناصر بتأثير التلاشي
+  const fadeInElements = document.querySelectorAll('.fade-in');
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transition = 'opacity 1s ease-in-out';
+      }
+    });
+  };
+  const fadeInObserver = new IntersectionObserver(observerCallback, observerOptions);
+  fadeInElements.forEach(el => {
+    fadeInObserver.observe(el);
+  });
+
+  // التمرير السلس للرابط الداخلي
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.length > 1 && href.startsWith("#")) {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          e.preventDefault();
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navHeight;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
